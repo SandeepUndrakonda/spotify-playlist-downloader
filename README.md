@@ -17,7 +17,7 @@ Make sure the following are installed and properly set up:
 - FFmpeg 4.2 [*Installation Instructions*](https://spotdl.readthedocs.io/en/latest/installation/)
 >Run `spotdl --download-ffmpeg` to download FFmpeg for the SpotDL folder after installation.
 ## Installation
-1. Guidlines
+1. Guidelines
     - Make sure all required dependencies are installed correctly.
     - Choose a folder to store the downloaded songs, as the code uses a relative folder structure for output.
 2. Clone the repository
