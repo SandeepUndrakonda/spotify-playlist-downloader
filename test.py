@@ -1,16 +1,13 @@
 import requests
 import subprocess
+import os
 
 # Client Details from Spotify for Developers
 
-CLIENT_ID = "YOUR_CLIENT_ID"
-CLIENT_SECRET = "YOUR_CLIENT_SECRET"
+CLIENT_ID =  os.getenv("SPOTIFY_CLIENT_ID")
+CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 
-test_playlist = {
-    'Chowrasta & Co.': 'https://open.spotify.com/playlist/63XbvaB2I6BNkaQm0m1ota',
-    'Leader': 'https://open.spotify.com/playlist/5yXeVOWrdnR8HUJ3JxixCR'
-}
-
+# Function for generating a Access Token
 def get_access_code(clientID,clientSecret):
     url = "https://accounts.spotify.com/api/token"
 
@@ -28,7 +25,6 @@ def get_access_code(clientID,clientSecret):
 
     if response.status_code == 200:
         token = response.json()['access_token']
-        #print(token)
         return token
     else:
         print("Error:", response.status_code, response.text)
@@ -36,11 +32,14 @@ def get_access_code(clientID,clientSecret):
     
 current_token = get_access_code(CLIENT_ID,CLIENT_SECRET)
 
+# Function to get your playlists, Add your spotify username in the "username" variable
 def get_my_playlists(access_token):
 
     current_playlist = {}
 
-    url = "https://api.spotify.com/v1/users/31xiaxyocyddcrtajcdoxhaeaysa/playlists"
+    username = "YOUR_USER_NAME" 
+
+    url = f"https://api.spotify.com/v1/users/{username}/playlists"
 
     header = {
         "Authorization": f"Bearer {access_token}"
@@ -67,12 +66,15 @@ def get_my_playlists(access_token):
         print(error)
 
 current_playlist = get_my_playlists(current_token)
-print(current_playlist)
 
+#print(current_playlist)
+
+
+# Function for downloading your songs by playlists, Specify the output path in code directory
 def download_playlist(playlist):
     for name, url in current_playlist.items():
         print(f"Downloading playlist: {name}")
         subprocess.run(["python", "-m", "spotdl", url, "--output", f"Pass1/{name}"])
         
 
-download_playlist(current_playlist)
+#download_playlist(current_playlist)
