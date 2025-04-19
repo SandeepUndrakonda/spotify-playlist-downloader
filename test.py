@@ -70,11 +70,11 @@ current_playlist = get_my_playlists(current_token)
 #print(current_playlist)
 
 
-# Function for downloading your songs by playlists, Specify the output path in code directory
+# Function for downloading your songs by playlists, Specify the output path in code
 def download_playlist(playlist):
     for name, url in current_playlist.items():
         print(f"Downloading playlist: {name}")
         subprocess.run(["python", "-m", "spotdl", url, "--output", f"Pass1/{name}"])
         
 
-#download_playlist(current_playlist)
+download_playlist(current_playlist)
