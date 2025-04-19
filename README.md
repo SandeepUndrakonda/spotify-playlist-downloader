@@ -32,6 +32,7 @@ Make sure the following are installed and properly set up:
     - Open Edit System Environment Variables and add:
         - SPOTIFY_CLIENT_ID = your Client ID
         - SPOTIFY_CLIENT_SECRET = your Client Secret
+        - Make sure to restart your PC for the environment variables to take effect.
     - Alternatively, you can directly paste them in the code:
     ```python
     CLIENT_ID = "your-client-id"
